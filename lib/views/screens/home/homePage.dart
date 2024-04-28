@@ -11,6 +11,7 @@ import 'package:jobhubv2_0/views/common/heading_widget.dart';
 import 'package:jobhubv2_0/views/common/reusable_text.dart';
 import 'package:jobhubv2_0/views/common/search.dart';
 import 'package:jobhubv2_0/views/screens/auth/profile_page.dart';
+import 'package:jobhubv2_0/views/screens/jobs/widgets/popular_jobs.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -70,6 +71,10 @@ class _HomePageState extends State<HomePage> {
                   height: 30.h,
                 ),
                 HeadingWidget(text: "Popular Jobs"),
+                SizedBox(
+                  height: 15.h,
+                ),
+                PopularJobs(),
                 SizedBox(
                   height: 15.h,
                 ),

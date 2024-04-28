@@ -1,58 +1,91 @@
-import 'dart:convert';
+class JobResponse {
+  List<JobsResponse>? jobs;
 
-List<JobsResponse> jobsResponseFromJson(String str) => List<JobsResponse>.from(json.decode(str).map((x) => JobsResponse.fromJson(x)));
+  JobResponse({this.jobs});
+
+  JobResponse.fromJson(Map<String, dynamic> json) {
+    if (json['jobs'] != null) {
+      jobs = <JobsResponse>[];
+      json['jobs'].forEach((v) {
+        jobs!.add(new JobsResponse.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.jobs != null) {
+      data['jobs'] = this.jobs!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
 
 class JobsResponse {
-    JobsResponse({
-        required this.id,
-        required this.title,
-        required this.location,
-        required this.agentName,
-        required this.company,
-        required this.hiring,
-        required this.description,
-        required this.salary,
-        required this.period,
-        required this.contract,
-        required this.requirements,
-        required this.imageUrl,
-        required this.agentId,
-        // required this.createdAt,
-        // required this.updatedAt,
-    });
+  String? sId;
+  String? title;
+  String? company;
+  String? location;
+  String? description;
+  String? agentName;
+  String? salary;
+  String? period;
+  bool? hiring;
+  String? contract;
+  List<String>? requirements;
+  String? imageUrl;
+  String? agentId;
+  int? iV;
 
-    final String id;
-    final String title;
-    final String location;
-    final String company;
-    final bool hiring;
-    final String description;
-    final String salary;
-    final String period;
-    final String contract;
-    final List<String> requirements;
-    final String imageUrl;
-    final String agentId;
-    final String agentName;
-    // final DateTime createdAt;
-    // final DateTime updatedAt;
+  JobsResponse(
+      {this.sId,
+      this.title,
+      this.location,
+      this.description,
+      this.agentName,
+      this.salary,
+      this.period,
+      this.hiring,
+      this.company,
+      this.contract,
+      this.requirements,
+      this.imageUrl,
+      this.agentId,
+      this.iV});
 
-    factory JobsResponse.fromJson(Map<String, dynamic> json) => JobsResponse(
-        id: json["_id"],
-        title: json["title"],
-        location: json["location"],
-        company: json["company"],
-        hiring: json["hiring"],
-        description: json["description"],
-        salary: json["salary"],
-        period: json["period"],
-        agentName: json["agentName"],
-        contract: json["contract"],
-        requirements: List<String>.from(json["requirements"].map((x) => x)),
-        imageUrl: json["imageUrl"],
-        agentId: json["agentId"],
-        // createdAt: DateTime.parse(json["createdAt"]),
-        // updatedAt: DateTime.parse(json["updatedAt"]),
-    );
+  JobsResponse.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    title = json['title'];
+    company = json['company'];
+    location = json['location'];
+    description = json['description'];
+    agentName = json['agentName'];
+    salary = json['salary'];
+    period = json['period'];
+    hiring = json['hiring'];
+    contract = json['contract'];
+    requirements = json['requirements'].cast<String>();
+    imageUrl = json['imageUrl'];
+    agentId = json['agentId'];
+    iV = json['__v'];
+  }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['title'] = this.title;
+    data['company'] = this.company;
+    data['location'] = this.location;
+    data['description'] = this.description;
+    data['agentName'] = this.agentName;
+    data['salary'] = this.salary;
+    data['period'] = this.period;
+    data['hiring'] = this.hiring;
+    data['contract'] = this.contract;
+    data['requirements'] = this.requirements;
+    data['imageUrl'] = this.imageUrl;
+    data['agentId'] = this.agentId;
+    data['__v'] = this.iV;
+    return data;
+  }
 }

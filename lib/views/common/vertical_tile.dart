@@ -37,7 +37,7 @@ class VerticalTile extends StatelessWidget {
                         backgroundColor: Color(kLightGrey.value),
                         radius: 25,
                         backgroundImage:
-                             NetworkImage(job!.imageUrl),
+                             NetworkImage(job!.imageUrl!),
                       ),
                       const WidthSpacer(width: 25),
                       Column(
@@ -45,14 +45,14 @@ class VerticalTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ReusableText(
-                            text: job!.company,
+                            text: job!.company!,
                             style: appStyle(
                                 18, Color(kDark.value), FontWeight.w600),
                           ),
                           SizedBox(
                             width: width * 0.5,
                             child: ReusableText(
-                              text: job!.title,
+                              text: job!.title!,
                               style: appStyle(
                                   16, Color(kDarkGrey.value), FontWeight.w600),
                             ),
@@ -73,7 +73,7 @@ class VerticalTile extends StatelessWidget {
                 child: Row(
                   children: [
                     ReusableText(
-                        text: job!.salary,
+                        text: job!.salary!,
                         style:
                             appStyle(20, Color(kDark.value), FontWeight.w600)),
                     ReusableText(
